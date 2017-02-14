@@ -25,7 +25,7 @@ SECRET_KEY = 'zgd32hzq31s#7t=(io-p^4yenhu985bfnk*=-!r#02d&tm6dn*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['landr.pythonanywhere.com']
 
 
 # Application definition
