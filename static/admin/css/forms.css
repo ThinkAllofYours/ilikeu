@@ -4,8 +4,13 @@
 
 .form-row {
     overflow: hidden;
+<<<<<<< HEAD
     padding: 10px;
     font-size: 13px;
+=======
+    padding: 8px 12px;
+    font-size: 11px;
+>>>>>>> 79cfd5b0f53f841b9da29c33522c5da05c9d58d6
     border-bottom: 1px solid #eee;
 }
 
@@ -13,6 +18,7 @@
     vertical-align: middle;
 }
 
+<<<<<<< HEAD
 .form-row label input[type="checkbox"] {
     margin-top: 0;
     vertical-align: 0;
@@ -20,6 +26,11 @@
 
 form .form-row p {
     padding-left: 0;
+=======
+form .form-row p {
+    padding-left: 0;
+    font-size: 11px;
+>>>>>>> 79cfd5b0f53f841b9da29c33522c5da05c9d58d6
 }
 
 .hidden {
@@ -28,6 +39,7 @@ form .form-row p {
 
 /* FORM LABELS */
 
+<<<<<<< HEAD
 label {
     font-weight: normal;
     color: #666;
@@ -37,6 +49,23 @@ label {
 .required label, label.required {
     font-weight: bold;
     color: #333;
+=======
+form h4 {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+label {
+    font-weight: normal !important;
+    color: #666;
+    font-size: 12px;
+}
+
+.required label, label.required {
+    font-weight: bold !important;
+    color: #333 !important;
+>>>>>>> 79cfd5b0f53f841b9da29c33522c5da05c9d58d6
 }
 
 /* RADIO BUTTONS */
@@ -50,11 +79,14 @@ form ul.radiolist label {
     display: inline;
 }
 
+<<<<<<< HEAD
 form ul.radiolist input[type="radio"] {
     margin: -2px 4px 0 0;
     padding: 0;
 }
 
+=======
+>>>>>>> 79cfd5b0f53f841b9da29c33522c5da05c9d58d6
 form ul.inline {
     margin-left: 0;
     padding: 0;
@@ -69,6 +101,7 @@ form ul.inline li {
 
 .aligned label {
     display: block;
+<<<<<<< HEAD
     padding: 4px 10px 0 0;
     float: left;
     width: 160px;
@@ -88,6 +121,12 @@ form ul.inline li {
     margin-top: 0;
     margin-bottom: 0;
     margin-left: 170px;
+=======
+    padding: 3px 10px 0 0;
+    float: left;
+    width: 8em;
+    word-wrap: break-word;
+>>>>>>> 79cfd5b0f53f841b9da29c33522c5da05c9d58d6
 }
 
 .aligned ul label {
@@ -96,14 +135,18 @@ form ul.inline li {
     width: auto;
 }
 
+<<<<<<< HEAD
 .aligned .form-row input {
     margin-bottom: 0;
 }
 
+=======
+>>>>>>> 79cfd5b0f53f841b9da29c33522c5da05c9d58d6
 .colMS .aligned .vLargeTextField, .colMS .aligned .vXMLLargeTextField {
     width: 350px;
 }
 
+<<<<<<< HEAD
 form .aligned ul {
     margin-left: 160px;
     padding-left: 10px;
@@ -141,6 +184,11 @@ form .aligned select + p.help {
 
 form .aligned ul li {
     list-style: none;
+=======
+form .aligned p, form .aligned ul {
+    margin-left: 7em;
+    padding-left: 30px;
+>>>>>>> 79cfd5b0f53f841b9da29c33522c5da05c9d58d6
 }
 
 form .aligned table p {
@@ -148,6 +196,7 @@ form .aligned table p {
     padding-left: 0;
 }
 
+<<<<<<< HEAD
 .aligned .vCheckboxLabel {
     float: none;
     width: auto;
@@ -158,6 +207,16 @@ form .aligned table p {
 
 .aligned .vCheckboxLabel + p.help {
     margin-top: -4px;
+=======
+form .aligned p.help {
+    padding-left: 38px;
+}
+
+.aligned .vCheckboxLabel {
+    float: none !important;
+    display: inline;
+    padding-left: 4px;
+>>>>>>> 79cfd5b0f53f841b9da29c33522c5da05c9d58d6
 }
 
 .colM .aligned .vLargeTextField, .colM .aligned .vXMLLargeTextField {
@@ -166,7 +225,11 @@ form .aligned table p {
 
 .checkbox-row p.help {
     margin-left: 0;
+<<<<<<< HEAD
     padding-left: 0;
+=======
+    padding-left: 0 !important;
+>>>>>>> 79cfd5b0f53f841b9da29c33522c5da05c9d58d6
 }
 
 fieldset .field-box {
@@ -177,11 +240,19 @@ fieldset .field-box {
 /* WIDE FIELDSETS */
 
 .wide label {
+<<<<<<< HEAD
     width: 200px;
 }
 
 form .wide p, form .wide input + p.help {
     margin-left: 200px;
+=======
+    width: 15em !important;
+}
+
+form .wide p {
+    margin-left: 15em;
+>>>>>>> 79cfd5b0f53f841b9da29c33522c5da05c9d58d6
 }
 
 form .wide p.help {
@@ -199,6 +270,7 @@ fieldset.collapsed * {
 }
 
 fieldset.collapsed h2, fieldset.collapsed {
+<<<<<<< HEAD
     display: block;
 }
 
@@ -215,29 +287,54 @@ fieldset.collapsed h2 {
 
 fieldset .collapse-toggle {
     color: #fff;
+=======
+    display: block !important;
+}
+
+fieldset.collapsed h2 {
+    background-image: url(../img/nav-bg.gif);
+    background-position: bottom left;
+    color: #999;
+>>>>>>> 79cfd5b0f53f841b9da29c33522c5da05c9d58d6
 }
 
 fieldset.collapsed .collapse-toggle {
     background: transparent;
+<<<<<<< HEAD
     display: inline;
     color: #447e9b;
+=======
+    display: inline !important;
+>>>>>>> 79cfd5b0f53f841b9da29c33522c5da05c9d58d6
 }
 
 /* MONOSPACE TEXTAREAS */
 
 fieldset.monospace textarea {
+<<<<<<< HEAD
     font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
+=======
+    font-family: "Bitstream Vera Sans Mono",Monaco,"Courier New",Courier,monospace;
+>>>>>>> 79cfd5b0f53f841b9da29c33522c5da05c9d58d6
 }
 
 /* SUBMIT ROW */
 
 .submit-row {
+<<<<<<< HEAD
     padding: 12px 14px;
     margin: 0 0 20px;
     background: #f8f8f8;
     border: 1px solid #eee;
     border-radius: 4px;
     text-align: right;
+=======
+    padding: 5px 7px;
+    text-align: right;
+    background: white url(../img/nav-bg.gif) 0 100% repeat-x;
+    border: 1px solid #ccc;
+    margin: 5px 0;
+>>>>>>> 79cfd5b0f53f841b9da29c33522c5da05c9d58d6
     overflow: hidden;
 }
 
@@ -246,6 +343,7 @@ body.popup .submit-row {
 }
 
 .submit-row input {
+<<<<<<< HEAD
     height: 35px;
     line-height: 15px;
     margin: 0 0 0 5px;
@@ -256,12 +354,18 @@ body.popup .submit-row {
     text-transform: uppercase;
 }
 
+=======
+    margin: 0 0 0 5px;
+}
+
+>>>>>>> 79cfd5b0f53f841b9da29c33522c5da05c9d58d6
 .submit-row p {
     margin: 0.3em;
 }
 
 .submit-row p.deletelink-box {
     float: left;
+<<<<<<< HEAD
     margin: 0;
 }
 
@@ -279,12 +383,23 @@ body.popup .submit-row {
 .submit-row a.deletelink:hover,
 .submit-row a.deletelink:active {
     background: #a41515;
+=======
+}
+
+.submit-row .deletelink {
+    background: url(../img/icon_deletelink.gif) 0 50% no-repeat;
+    padding-left: 14px;
+>>>>>>> 79cfd5b0f53f841b9da29c33522c5da05c9d58d6
 }
 
 /* CUSTOM FORM FIELDS */
 
 .vSelectMultipleField {
+<<<<<<< HEAD
     vertical-align: top;
+=======
+    vertical-align: top !important;
+>>>>>>> 79cfd5b0f53f841b9da29c33522c5da05c9d58d6
 }
 
 .vCheckboxField {
@@ -293,7 +408,10 @@ body.popup .submit-row {
 
 .vDateField, .vTimeField {
     margin-right: 2px;
+<<<<<<< HEAD
     margin-bottom: 4px;
+=======
+>>>>>>> 79cfd5b0f53f841b9da29c33522c5da05c9d58d6
 }
 
 .vDateField {
@@ -340,6 +458,7 @@ body.popup .submit-row {
 
 .inline-group {
     padding: 0;
+<<<<<<< HEAD
     margin: 0 0 30px;
 }
 
@@ -349,6 +468,14 @@ body.popup .submit-row {
 
 .inline-group .aligned label {
     width: 160px;
+=======
+    border: 1px solid #ccc;
+    margin: 10px 0;
+}
+
+.inline-group .aligned label {
+    width: 8em;
+>>>>>>> 79cfd5b0f53f841b9da29c33522c5da05c9d58d6
 }
 
 .inline-related {
@@ -358,11 +485,18 @@ body.popup .submit-row {
 .inline-related h3 {
     margin: 0;
     color: #666;
+<<<<<<< HEAD
     padding: 5px;
     font-size: 13px;
     background: #f8f8f8;
     border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
+=======
+    padding: 3px 5px;
+    font-size: 11px;
+    background: #e1e1e1 url(../img/nav-bg.gif) top left repeat-x;
+    border-bottom: 1px solid #ddd;
+>>>>>>> 79cfd5b0f53f841b9da29c33522c5da05c9d58d6
 }
 
 .inline-related h3 span.delete {
@@ -393,6 +527,10 @@ body.popup .submit-row {
 
 .inline-group .tabular fieldset.module {
     border: none;
+<<<<<<< HEAD
+=======
+    border-bottom: 1px solid #ddd;
+>>>>>>> 79cfd5b0f53f841b9da29c33522c5da05c9d58d6
 }
 
 .inline-related.tabular fieldset.module table {
@@ -422,7 +560,11 @@ body.popup .submit-row {
     position: absolute;
     left: 0;
     height: 1.1em;
+<<<<<<< HEAD
     padding: 2px 9px;
+=======
+    padding: 2px 7px;
+>>>>>>> 79cfd5b0f53f841b9da29c33522c5da05c9d58d6
     overflow: hidden;
     font-size: 9px;
     font-weight: bold;
@@ -444,6 +586,7 @@ body.popup .submit-row {
 .inline-group div.add-row,
 .inline-group .tabular tr.add-row td {
     color: #666;
+<<<<<<< HEAD
     background: #f8f8f8;
     padding: 8px 10px;
     border-bottom: 1px solid #eee;
@@ -452,14 +595,31 @@ body.popup .submit-row {
 .inline-group .tabular tr.add-row td {
     padding: 8px 10px;
     border-bottom: 1px solid #eee;
+=======
+    padding: 3px 5px;
+    border-bottom: 1px solid #ddd;
+    background: #e1e1e1 url(../img/nav-bg.gif) top left repeat-x;
+}
+
+.inline-group .tabular tr.add-row td {
+    padding: 4px 5px 3px;
+    border-bottom: none;
+>>>>>>> 79cfd5b0f53f841b9da29c33522c5da05c9d58d6
 }
 
 .inline-group ul.tools a.add,
 .inline-group div.add-row a,
 .inline-group .tabular tr.add-row td a {
+<<<<<<< HEAD
     background: url(../img/icon-addlink.svg) 0 1px no-repeat;
     padding-left: 16px;
     font-size: 12px;
+=======
+    background: url(../img/icon_addlink.gif) 0 50% no-repeat;
+    padding-left: 14px;
+    font-size: 11px;
+    outline: 0; /* Remove dotted border around link */
+>>>>>>> 79cfd5b0f53f841b9da29c33522c5da05c9d58d6
 }
 
 .empty-form {
@@ -471,6 +631,7 @@ body.popup .submit-row {
 .add-another, .related-lookup {
     margin-left: 5px;
     display: inline-block;
+<<<<<<< HEAD
     vertical-align: middle;
     background-repeat: no-repeat;
     background-size: 14px;
@@ -480,11 +641,20 @@ body.popup .submit-row {
     width: 16px;
     height: 16px;
     background-image: url(../img/icon-addlink.svg);
+=======
+}
+
+.add-another {
+    width: 10px;
+    height: 10px;
+    background-image: url(../img/icon_addlink.gif);
+>>>>>>> 79cfd5b0f53f841b9da29c33522c5da05c9d58d6
 }
 
 .related-lookup {
     width: 16px;
     height: 16px;
+<<<<<<< HEAD
     background-image: url(../img/search.svg);
 }
 
@@ -496,4 +666,7 @@ form .related-widget-wrapper ul {
 
 .clearable-file-input input {
     margin-top: 0;
+=======
+    background-image: url(../img/selector-search.gif);
+>>>>>>> 79cfd5b0f53f841b9da29c33522c5da05c9d58d6
 }
