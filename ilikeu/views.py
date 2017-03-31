@@ -4,6 +4,8 @@ from .models import Post
 from django.shortcuts import render, get_object_or_404
 from .forms import PostForm
 from django.shortcuts import redirect
+#---------------------------------
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -12,6 +14,12 @@ def login(request):
 
 def logout(request):
     return render(request, 'blog/logout.html',{})  
+
+def vote(request, mate_date, number):
+    return render(request, 'blog/profile-page.html', {})
+
+def result(request, mate_date, number):
+    return HttpResponse("Here's result Page")
 
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
