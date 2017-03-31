@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils import timezone
-import json
 
 # Create your models here.
 class Post(models.Model):
@@ -17,17 +16,16 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-#Create I_like_U Model_Man.
+#Create I_like_U Model.
 class Man(models.Model):
+    gender = 'M'
+    mate_date = models.DateTimeField(blank=False, null=False)
     phoneNumber = models.CharField(max_length=11)
     number = models.IntegerField()
-    MAN = 'M'
-    gender = models.CharField(max_length=1, default=MAN)
-    mate_date = models.DateTimeField(blank=False, null=False)
-    created_date = models.DateTimeField(default=timezone.now())
-    showNumber = models.BooleanField(default=False)
-    i_like_u = models.CharField(max_length=200)
-    i_like_m = models.CharField(max_length=200)
+    password = models.CharField(max_length=20)
+    choise1 = models.IntegerField()
+    choise2 = models.IntegerField()
+    created_date = models.DateTimeField(default=timezone.now)
 
     def publish(self):
         self.save()
@@ -36,15 +34,14 @@ class Man(models.Model):
         return self.phoneNumber
 
 class Woman(models.Model):
-    phoneNumber = models.CharField(max_length=11)
-    number = models.IntegerField()
-    WOMAN = 'W'
-    gender = models.CharField(max_length=1, default=WOMAN)
+    gender = 'W'
     mate_date = models.DateTimeField(blank=False, null=False)
-    created_date = models.DateTimeField(default=timezone.now())
-    showNumber = models.BooleanField(default=False)
-    i_like_u = models.CharField(max_length=200)
-    i_like_m = models.CharField(max_length=200)
+    phoneNumber = models.CharField(max_length=11, blank=False, null=False)
+    number = models.IntegerField()
+    password = models.CharField(max_length=20)
+    choise1 = models.IntegerField()
+    choise2 = models.IntegerField()
+    created_date = models.DateTimeField(default=timezone.now)
 
     def publish(self):
         self.save()
