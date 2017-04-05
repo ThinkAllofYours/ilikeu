@@ -1,19 +1,31 @@
-from django.shortcuts import render
 from django.utils import timezone
-from .models import Post
+from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
-from .forms import PostForm
 from django.shortcuts import redirect
-#---------------------------------
+from django.http import HttpResponseRedirect
+from django.contrib.auth import logout
+from .forms import PostForm
+from .models import Post
+from .models import Man
+from .models import Woman
+
+# ---------------------------------
+
 from django.http import HttpResponse
 
 # Create your views here.
 
+def home(request):
+    form = PostForm()
+    return render(request, 'blog/login.html', {'form': form})
+
 def login(request):
-    return render(request, 'blog/login.html', {})  
+    return render(request, 'blog/profile-page.html', {})
 
 def logout(request):
-    return render(request, 'blog/logout.html',{})  
+    # return render(request, 'blog/logout.html',{})
+    logout(request)
+    return HttpResponseRedirect('/')
 
 def vote(request, mate_date, number):
     return render(request, 'blog/profile-page.html', {})

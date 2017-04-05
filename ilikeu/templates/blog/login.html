@@ -17,16 +17,6 @@
       <div class="collapse navbar-collapse" id="navigation-example">
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a href="../components-documentation.html" target="_blank">
-    						Components
-    					</a>
-          </li>
-          <li>
-            <!--<a href="http://demos.creative-tim.com/material-kit-pro/presentation.html?ref=utp-freebie" target="_blank">
-              <i class="material-icons">unarchive</i> Upgrade to PRO
-            </a>-->
-          </li>
-          <li>
             <a href="https://twitter.com/CreativeTim" target="_blank" class="btn btn-simple btn-white btn-just-icon">
               <i class="fa fa-twitter"></i>
             </a>
@@ -44,15 +34,15 @@
         </ul>
       </div>
     </div>
-  </nav>
-
+  </nav>ƒ
   <div class="wrapper">
     <div class="header header-filter" style="background-image: url('../../static/img/city.jpg'); background-size: cover; background-position: top center;">
       <div class="container">
         <div class="row">
           <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
             <div class="card card-signup">
-              <form class="form" method="" action="">
+
+              <form class="form" method="POST" action="">{% csrf_token %}
                 <div class="header header-primary text-center">
                   <h4>Sign Up</h4>
                   <div class="social-line">
@@ -68,40 +58,51 @@
                   </div>
                 </div>
                 <p class="text-divider">Or Be Classical</p>
+
                 <div class="content">
+
+                    <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class="material-icons">face</i>
+                    </span>
+                        <select class="select form-control" placeholder="Choose an option">
+                            <option disabled selected class="disabled"> Choose gender</option>
+                            <option value="1">Man</option>
+                            <option value="1">Woman</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="material-icons">today</i>
+                    </span>
+                      <input type="text" class="datepicker form-control" value="04/11/2017" />
+                  </div>
 
                   <div class="input-group">
                     <span class="input-group-addon">
-											<i class="material-icons">phone</i>
-										</span>
+                        <i class="material-icons">phone</i>
+                    </span>
                     <input type="text" class="form-control" placeholder="Phone Number...">
                   </div>
 
-                  <div class="input-group">
-                    <span class="input-group-addon">
-											<i class="material-icons">email</i>
-										</span>
-                    <input type="text" class="form-control" placeholder="Email...">
-                  </div>
+{#                  <div class="input-group">#}
+{#                    <span class="input-group-addon">#}
+{#                        <i class="material-icons">email</i>#}
+{#                    </span>#}
+{#                    <input type="text" class="form-control" placeholder="Email...">#}
+{#                  </div>#}
 
                   <div class="input-group">
                     <span class="input-group-addon">
-											<i class="material-icons">lock_outline</i>
-										</span>
+                        <i class="material-icons">lock_outline</i>
+                    </span>
                     <input type="password" placeholder="Password..." class="form-control" />
                   </div>
 
-                  <!-- If you want to add a checkbox to this form, uncomment this code
+                  <div class="footer text-center">
+                      <button type="submit" class="btn btn-simple btn-primary btn-lg">Get Started</button>
+                  </div>
 
-									<div class="checkbox">
-										<label>
-											<input type="checkbox" name="optionsCheckboxes" checked>
-											Subscribe to newsletter
-										</label>
-									</div> -->
-                </div>
-                <div class="footer text-center">
-                  <a href="#pablo" class="btn btn-simple btn-primary btn-lg">Get Started</a>
                 </div>
               </form>
             </div>
@@ -109,37 +110,38 @@
         </div>
       </div>
 
-      <footer class="footer">
-        <div class="container">
-          <nav class="pull-left">
-            <ul>
-              <li>
-                <a href="http://www.creative-tim.com">
-									Creative Tim
-								</a>
-              </li>
-              <li>
-                <a href="http://presentation.creative-tim.com">
-								   About Us
-								</a>
-              </li>
-              <li>
-                <a href="http://blog.creative-tim.com">
-								   Blog
-								</a>
-              </li>
-              <li>
-                <a href="http://www.creative-tim.com/license">
-									Licenses
-								</a>
-              </li>
-            </ul>
-          </nav>
-          <div class="copyright pull-right">
-            &copy; 2016, made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com" target="_blank">Creative Tim</a>
-          </div>
-        </div>
-      </footer>
+        <footer class="footer">
+            <div class="container">
+                <nav class="pull-left">
+                    <ul>
+                        <li>
+                            <a href="http://www.creative-tim.com">
+                                Creative Tim
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://presentation.creative-tim.com">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://blog.creative-tim.com">
+                                Blog
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.creative-tim.com/license">
+                                Licenses
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="copyright pull-right">
+                    &copy; 2016, made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com"
+                                                                                   target="_blank">Creative Tim</a>
+                </div>
+            </div>
+        </footer>
 
     </div>
 
