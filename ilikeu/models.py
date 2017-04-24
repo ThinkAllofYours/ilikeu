@@ -2,6 +2,9 @@ from django.db import models
 from django.utils import timezone
 
 # Create your models here.
+from django.utils.encoding import python_2_unicode_compatible
+
+
 class Post(models.Model):
     author = models.ForeignKey('auth.User')
     title = models.CharField(max_length=200)
@@ -16,31 +19,21 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-#Create I_like_U Model.
-class Man(models.Model):
-    gender = 'M'
-    mate_date = models.DateTimeField(blank=False, null=False)
-    phoneNumber = models.CharField(max_length=11)
-    number = models.IntegerField()
+# @python_2_unicode_compatible
+class Human(models.Model):
+    MAN = 'M'
+    WOMAN = 'W'
+    GENDERS = (
+        (MAN, 'MAN'),
+        (WOMAN, 'WOMAN')
+    )
+    gender = models.CharField(max_length=1, choices=GENDERS, default=MAN)
+    mate_date = models.DateField(blank=True, null=False)
+    phoneNumber = models.CharField(max_length=11, blank=True, null=False)
     password = models.CharField(max_length=20)
-    choise1 = models.IntegerField()
-    choise2 = models.IntegerField()
-    created_date = models.DateTimeField(default=timezone.now)
-
-    def publish(self):
-        self.save()
-
-    def __str__(self):
-        return self.phoneNumber
-
-class Woman(models.Model):
-    gender = 'W'
-    mate_date = models.DateTimeField(blank=False, null=False)
-    phoneNumber = models.CharField(max_length=11, blank=False, null=False)
-    number = models.IntegerField()
-    password = models.CharField(max_length=20)
-    choise1 = models.IntegerField()
-    choise2 = models.IntegerField()
+    number = models.SmallIntegerField(null=False)
+    choise1 = models.SmallIntegerField(blank=True, null=False)
+    choise2 = models.SmallIntegerField(blank=True, null=False)
     created_date = models.DateTimeField(default=timezone.now)
 
     def publish(self):

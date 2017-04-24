@@ -1,5 +1,7 @@
  {% extends 'blog/base.html' %} {% block content %}
 
+
+{% block body %}
 <body class="signup-page">
   <nav class="navbar navbar-transparent navbar-absolute">
     <div class="container">
@@ -42,7 +44,7 @@
           <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
             <div class="card card-signup">
 
-              <form class="form" method="POST" action="">{% csrf_token %}
+              <form class="form" method="post" action="{% url 'login' %}" role="form">{% csrf_token %}
                 <div class="header header-primary text-center">
                   <h4>Sign Up</h4>
                   <div class="social-line">
@@ -61,42 +63,35 @@
 
                 <div class="content">
 
-                    <div class="input-group">
+                  <div class="input-group">
                     <span class="input-group-addon">
                       <i class="material-icons">face</i>
                     </span>
-                        <select class="select form-control" placeholder="Choose an option">
+                        <select name="gender" class="select form-control" placeholder="Choose an option">
                             <option disabled selected class="disabled"> Choose gender</option>
-                            <option value="1">Man</option>
-                            <option value="1">Woman</option>
+                            <option value="M">Man</option>
+                            <option value="W">Woman</option>
                         </select>
-                    </div>
-                    <div class="input-group">
+                  </div>
+                  <div class="input-group">
                       <span class="input-group-addon">
                         <i class="material-icons">today</i>
                     </span>
-                      <input type="text" class="datepicker form-control" value="04/11/2017" />
+                      <input name="mate_date" type="text" class="datepicker form-control"/>
                   </div>
 
                   <div class="input-group">
                     <span class="input-group-addon">
                         <i class="material-icons">phone</i>
                     </span>
-                    <input type="text" class="form-control" placeholder="Phone Number...">
+                    <input name="phone_number" type="text" class="form-control" placeholder="Phone Number...">
                   </div>
-
-{#                  <div class="input-group">#}
-{#                    <span class="input-group-addon">#}
-{#                        <i class="material-icons">email</i>#}
-{#                    </span>#}
-{#                    <input type="text" class="form-control" placeholder="Email...">#}
-{#                  </div>#}
 
                   <div class="input-group">
                     <span class="input-group-addon">
                         <i class="material-icons">lock_outline</i>
                     </span>
-                    <input type="password" placeholder="Password..." class="form-control" />
+                    <input name="password" type="password" placeholder="Password..." class="form-control" />
                   </div>
 
                   <div class="footer text-center">
@@ -149,6 +144,7 @@
 
 
 </body>
+{% endblock body %}
 
 
 {% endblock %}
