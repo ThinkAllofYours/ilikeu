@@ -32,8 +32,8 @@ class Human(models.Model):
     phoneNumber = models.CharField(max_length=11, blank=True, null=False)
     password = models.CharField(max_length=20)
     number = models.SmallIntegerField(null=False)
-    choise1 = models.SmallIntegerField(blank=True, null=False)
-    choise2 = models.SmallIntegerField(blank=True, null=False)
+    choise1 = models.SmallIntegerField(blank=True, default=0)
+    choise2 = models.SmallIntegerField(blank=True, default=0)
     created_date = models.DateTimeField(default=timezone.now)
 
     def publish(self):
