@@ -70,13 +70,13 @@
 							<div class="profile-tabs">
 			                    <div class="nav-align-center">
 									<ul class="nav nav-pills" role="tablist">
-                                        <li>
+                                        <li class="active">
                                             <a href="#Favorite" role="tab" data-toggle="tab">
                                                 <i class="material-icons">favorite</i>
                                                 Favorite
                                             </a>
                                         </li>
-                                        <li class="active">
+                                        <li>
                                             <a href="#Result" role="tab" data-toggle="tab">
                                                 <i class="material-icons">camera</i>
                                                 Result
@@ -85,82 +85,83 @@
                                         <li>
 				                            <a href="#About" role="tab" data-toggle="tab">
 												<i class="material-icons">palette</i>
-												About
+                                                About
 				                            </a>
 				                        </li>
                                     </ul>
 				                    <div class="tab-content gallery">
-										<div class="tab-pane active" id="Favorite">
-                                            <div class="row">
-                                                <div class="col-sm-6">
 
-                                                    <div class="radio">
-                                                        <label>
-                                                            <input type="radio" name="optionsRadios">
-                                                            Radio is off
-                                                        </label>
+                                        <form class="form" method="post" action="{% url 'save_choice' %}" role="form">{% csrf_token %}
+{#                                        checked=true 값만 가져온다 #}
+                                            <div class="tab-pane active" id="Favorite">
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        {% for member in mates %}
+                                                            <div class="radio">
+                                                            {% if member.gender == 'M' %}
+                                                                <label>
+                                                                    <input type="radio" name="choice1" value="{{ member.number }}">
+                                                                    남자 {{ member.number }}번님
+                                                                </label>
+
+                                                            {% elif member.gender == 'W'%}
+                                                                <label>
+                                                                    <input type="radio" name="choice1" value="{{ member.number }}">
+                                                                    여자 {{ member.number }}번님
+                                                                </label>
+                                                            {% endif %}
+                                                            </div>
+                                                        {% endfor %}
+                                                        {% comment %}
+                                                        <div class="radio">
+                                                            <label>
+                                                                <input type="radio" name="optionsRadios">
+                                                                Radio is off
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label>
+                                                                <input type="radio" name="optionsRadios" checked="true">
+                                                                Radio is on
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label>
+                                                                <input type="radio" name="optionsRadiosDisabled" disabled>
+                                                                Disabled Radio is off
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label>
+                                                                <input type="radio" name="optionsRadiosDisabled" checked="true"
+                                                                       disabled>
+                                                                Disabled Radio is on
+                                                            </label>
+                                                        </div>
+                                                        {% endcomment %}
                                                     </div>
-                                                    <div class="radio">
-                                                        <label>
-                                                            <input type="radio" name="optionsRadios" checked="true">
-                                                            Radio is on
-                                                        </label>
-                                                    </div>
-                                                    <div class="radio">
-                                                        <label>
-                                                            <input type="radio" name="optionsRadiosDisabled" disabled>
-                                                            Disabled Radio is off
-                                                        </label>
-                                                    </div>
-                                                    <div class="radio">
-                                                        <label>
-                                                            <input type="radio" name="optionsRadiosDisabled" checked="true"
-                                                                   disabled>
-                                                            Disabled Radio is on
-                                                        </label>
+                                                    <div class="col-sm-6">
+                                                        {% for member in mates %}
+                                                            <div class="radio">
+                                                            {% if member.gender == 'M' %}
+                                                                <label>
+                                                                    <input type="radio" name="choice2" value="{{ member.number }}">
+                                                                    남자 {{ member.number }}번님
+                                                                </label>
+
+                                                            {% elif member.gender == 'W'%}
+                                                                <label>
+                                                                    <input type="radio" name="choice2" value="{{ member.number }}">
+                                                                    여자 {{ member.number }}번님
+                                                                </label>
+                                                            {% endif %}
+                                                            </div>
+                                                        {% endfor %}
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-6">
-                                                    <div class="radio">
-                                                        <label>
-                                                            <input type="radio" name="optionsRadios">
-                                                            Radio is off
-                                                        </label>
-                                                    </div>
-                                                    <div class="radio">
-                                                        <label>
-                                                            <input type="radio" name="optionsRadios" checked="true">
-                                                            Radio is on
-                                                        </label>
-                                                    </div>
-                                                    <div class="radio">
-                                                        <label>
-                                                            <input type="radio" name="optionsRadiosDisabled" disabled>
-                                                            Disabled Radio is off
-                                                        </label>
-                                                    </div>
-                                                    <div class="radio">
-                                                        <label>
-                                                            <input type="radio" name="optionsRadiosDisabled" checked="true"
-                                                                   disabled>
-                                                            Disabled Radio is on
-                                                        </label>
-                                                    </div>
-                                                </div>
+                                            <button type="submit" class="btn btn-primary" name="phoneNumber" value="{{ login_user.phoneNumber }}">DONE</button>
                                             </div>
-                                            {% comment %}
-				                            <div class="row">
-												<div class="col-md-6">
-													<img src="{% static "img/examples/chris1.jpg" %}" class="img-rounded" />
-													<img src="{% static "img/examples/chris0.jpg" %}" class="img-rounded" />
-												</div>
-												<div class="col-md-6">
-													<img src="{% static "img/examples/chris3.jpg" %}" class="img-rounded" />
-													<img src="{% static "img/examples/chris4.jpg" %}" class="img-rounded" />
-												</div>
-				                            </div>
-				                            {% endcomment %}
-				                        </div>
+                                        </form>
 										<div class="tab-pane text-center" id="Result">
 											<div class="row">
 												<div class="col-md-6">

@@ -19,6 +19,7 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+
 # @python_2_unicode_compatible
 class Human(models.Model):
     MAN = 'M'
@@ -32,12 +33,15 @@ class Human(models.Model):
     phoneNumber = models.CharField(max_length=11, blank=True, null=False)
     password = models.CharField(max_length=20)
     number = models.SmallIntegerField(null=False)
-    choise1 = models.SmallIntegerField(blank=True, default=0)
-    choise2 = models.SmallIntegerField(blank=True, default=0)
+    choice1 = models.SmallIntegerField(blank=True, default=0)
+    choice2 = models.SmallIntegerField(blank=True, default=0)
     created_date = models.DateTimeField(default=timezone.now)
 
     def publish(self):
         self.save()
 
     def __str__(self):
-        return self.phoneNumber
+        return '%s %s %s' % (self.mate_date, self.gender, self.phoneNumber)
+        # return self.phoneNumber
+
+

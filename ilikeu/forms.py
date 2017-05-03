@@ -1,5 +1,4 @@
 from django import forms
-from .models import Post
 from .models import Human
 
 
@@ -9,9 +8,7 @@ class LoginForm(forms.ModelForm):
         fields = ('gender', 'mate_date', 'phoneNumber', 'password',)
 
 
-class PostForm(forms.ModelForm):
-    
+class SaveForm(forms.ModelForm):
     class Meta:
-        model = Post
-        fields = ('title', 'text',)
-
+        model = Human
+        fields = ('choice1', 'choice2', 'phoneNumber',)
