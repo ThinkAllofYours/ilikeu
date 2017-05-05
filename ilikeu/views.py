@@ -43,8 +43,11 @@ def login(request):
                 login_user = Human.objects.get(pk=login_user[0].pk)
                 mates = Human.objects.filter(mate_date=convert_date, gender=gender,)
                 mate_dates = MateDates.objects.get(mate_date=convert_date, )
-            except login_user.DoesNotExist:
-                return render(request, 'blog/login.html', {'alert': True})
+            except:
+                if not login_user or not mates == 0:
+                    return render(request, 'blog/login.html', {'alert': True})
+
+                raise Http404('아이디 비번을 다시 입력해주세')
 
             if login_user.gender == mates[0].gender:
                 return render(request, 'blog/login.html', {'alert': True})
@@ -84,7 +87,7 @@ def login(request):
         else:
             return render(request, 'blog/login.html', {'alert': True})
     else:
-        return HttpResponse("retry again")
+        return HttpResponseRedirect('blog/login.html', {'alert': True})
         # return render(request, 'blog/profile-page.html', {})
 
 
