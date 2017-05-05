@@ -90,90 +90,164 @@
 				                        </li>
                                     </ul>
 				                    <div class="tab-content gallery">
-
-                                        <form class="form" method="post" action="{% url 'save_choice' %}" role="form">{% csrf_token %}
 {#                                        checked=true 값만 가져온다 #}
                                             <div class="tab-pane active" id="Favorite">
-                                                <div class="row">
-                                                    <div class="col-sm-6">
-                                                        {% for member in mates %}
-                                                            <div class="radio">
-                                                            {% if member.gender == 'M' %}
-                                                                <label>
-                                                                    <input type="radio" name="choice1" value="{{ member.number }}">
-                                                                    남자 {{ member.number }}번님
-                                                                </label>
-
-                                                            {% elif member.gender == 'W'%}
-                                                                <label>
-                                                                    <input type="radio" name="choice1" value="{{ member.number }}">
-                                                                    여자 {{ member.number }}번님
-                                                                </label>
-                                                            {% endif %}
+                                                {% if mate_dates.isOpen %}
+                                                    <form class="form" method="post" action="{% url 'save_choice' %}" role="form">{% csrf_token %}
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                {% for member in mates %}
+                                                                    <div class="radio">
+                                                                        <label>
+                                                                            {% if member.number == login_user.choice1 %}
+                                                                                <input type="radio" name="choice1" value="{{ member.number }}" checked="true"
+                                                                                       {% if mate_dates.isComplete %}disabled{% endif %}>
+                                                                                    {% if member.gender == 'M' %}
+                                                                                        남자 {{ member.number }}번님
+                                                                                    {% else %}
+                                                                                        여자 {{ member.number }}번님
+                                                                                    {% endif %}
+                                                                            {% else %}
+                                                                                <input type="radio" name="choice1" value="{{ member.number }}"
+                                                                                       {% if mate_dates.isComplete %}disabled{% endif %}>
+                                                                                    {% if member.gender == 'M' %}
+                                                                                        남자 {{ member.number }}번님
+                                                                                    {% else %}
+                                                                                        여자 {{ member.number }}번님
+                                                                                    {% endif %}
+                                                                            {% endif %}
+                                                                        </label>
+                                                                    </div>
+                                                                {% endfor %}
                                                             </div>
-                                                        {% endfor %}
-                                                        {% comment %}
-                                                        <div class="radio">
-                                                            <label>
-                                                                <input type="radio" name="optionsRadios">
-                                                                Radio is off
-                                                            </label>
-                                                        </div>
-                                                        <div class="radio">
-                                                            <label>
-                                                                <input type="radio" name="optionsRadios" checked="true">
-                                                                Radio is on
-                                                            </label>
-                                                        </div>
-                                                        <div class="radio">
-                                                            <label>
-                                                                <input type="radio" name="optionsRadiosDisabled" disabled>
-                                                                Disabled Radio is off
-                                                            </label>
-                                                        </div>
-                                                        <div class="radio">
-                                                            <label>
-                                                                <input type="radio" name="optionsRadiosDisabled" checked="true"
-                                                                       disabled>
-                                                                Disabled Radio is on
-                                                            </label>
-                                                        </div>
-                                                        {% endcomment %}
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        {% for member in mates %}
-                                                            <div class="radio">
-                                                            {% if member.gender == 'M' %}
-                                                                <label>
-                                                                    <input type="radio" name="choice2" value="{{ member.number }}">
-                                                                    남자 {{ member.number }}번님
-                                                                </label>
-
-                                                            {% elif member.gender == 'W'%}
-                                                                <label>
-                                                                    <input type="radio" name="choice2" value="{{ member.number }}">
-                                                                    여자 {{ member.number }}번님
-                                                                </label>
-                                                            {% endif %}
+                                                            <div class="col-sm-6">
+                                                                {% for member in mates %}
+                                                                    <div class="radio">
+                                                                        <label>
+                                                                            {% if member.number == login_user.choice2 %}
+                                                                                <input type="radio" name="choice2" value="{{ member.number }}" checked="true"
+                                                                                       {% if mate_dates.isComplete %}disabled{% endif %}>
+                                                                                    {% if member.gender == 'M' %}
+                                                                                        남자 {{ member.number }}번님
+                                                                                    {% else %}
+                                                                                        여자 {{ member.number }}번님
+                                                                                    {% endif %}
+                                                                            {% else %}
+                                                                                <input type="radio" name="choice2" value="{{ member.number }}"
+                                                                                        {% if mate_dates.isComplete %}disabled{% endif %}>
+                                                                                    {% if member.gender == 'M' %}
+                                                                                        남자 {{ member.number }}번님
+                                                                                    {% else %}
+                                                                                        여자 {{ member.number }}번님
+                                                                                    {% endif %}
+                                                                            {% endif %}
+                                                                        </label>
+                                                                    </div>
+                                                                {% endfor %}
                                                             </div>
-                                                        {% endfor %}
+                                                        </div>
+                                                    <button type="submit" class="btn btn-primary"
+                                                            {% if mate_dates.isComplete %} disabled {% endif %}
+                                                            name="phoneNumber"
+                                                            value="{{ login_user.phoneNumber }}">DONE</button>
+                                                </form>
+                                                {% else %}
+                                                    <div class="alert alert-info">
+                                                        <div class="container-fluid">
+                                                            <div class="alert-icon">
+                                                                <i class="material-icons">info_outline</i>
+                                                            </div>
+                                                            <button type="button" class="close"
+                                                                    data-dismiss="alert" aria-label="Close">
+                                                                        <span aria-hidden="true">
+                                                                            <i class="material-icons">clear</i></span>
+                                                            </button>
+
+                                                            <b>Info alert:</b> Sorry, Manager didn't open the results.
+                                                            Please wait a minute.
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            <button type="submit" class="btn btn-primary" name="phoneNumber" value="{{ login_user.phoneNumber }}">DONE</button>
-                                            </div>
-                                        </form>
+                                                {% endif %}
+                                        </div>
+
 										<div class="tab-pane text-center" id="Result">
 											<div class="row">
-												<div class="col-md-6">
-													<img src="{% static "img/examples/chris4.jpg" %}" class="img-rounded" />
-													<img src="{% static "img/examples/chris6.jpg" %}" class="img-rounded" />
-												</div>
-												<div class="col-md-6">
-													<img src="{% static "img/examples/chris7.jpg" %}" class="img-rounded" />
-													<img src="{% static "img/examples/chris5.jpg" %}" class="img-rounded" />
-													<img src="{% static "img/examples/chris9.jpg" %}" class="img-rounded" />
-												</div>
-											</div>
+                                                {% if mate_dates.isComplete %}
+                                                <div class="col-md-6">
+                                                    <div class="info info-horizontal">
+                                                        <div class="icon icon-info">
+                                                            <i class="material-icons">info</i>
+                                                        </div>
+                                                        <div class="description">
+                                                            <h4 class="info-title">안녕하세요. <br>
+                                                                {{ login_user.mate_date }} <br>
+                                                                매칭결과 알려드립니다<br>
+                                                            </h4>
+                                                            <p>
+                                                                내가 선택한분 &nbsp; : &nbsp;{{ login_user.choice1 }},
+                                                                &nbsp; {{ login_user.choice2 }} <br>
+                                                                나를 선택한분 &nbsp; : &nbsp;{% for num in choice_you %}{{ num }}, &nbsp; {% endfor %}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    {% if is_match %}
+                                                        {% if choice_one %}
+                                                            <div class="info info-horizontal">
+                                                                <div class="icon icon-info">
+                                                                    <i class="material-icons">compare_arrows</i>
+                                                                </div>
+                                                                <div class="description">
+                                                                    <h4 class="info-title">{{ choice_one.number }}번
+                                                                        분과 매칭 성공</h4>
+                                                                    <p> {{ choice_one.userName }}&nbsp;:&nbsp;{{ choice_one.phoneNumber }}</p>
+                                                                </div>
+                                                            </div>
+                                                        {% endif %}
+                                                        {% if choice_two %}
+                                                            <div class="info info-horizontal">
+                                                                <div class="icon icon-info">
+                                                                    <i class="material-icons">compare_arrows</i>
+                                                                </div>
+                                                                <div class="description">
+                                                                    <h4 class="info-title">{{ choice_two.number }}번
+                                                                        분과 매칭 성공</h4>
+                                                                    <p> {{ choice_two.userName }}&nbsp;:&nbsp;{{ choice_two.phoneNumber }}</p>
+                                                                </div>
+                                                            </div>
+                                                        {% endif %}
+                                                    {% else %}
+                                                        <div class="info info-horizontal">
+                                                            <div class="icon icon-info">
+                                                                <i class="material-icons">sms_failed</i>
+                                                            </div>
+                                                            <div class="description">
+                                                                <h3 class="info-title">다음번에는 인연이 꼭 나타날거에요^^</h3>
+                                                                <p><br></p>
+                                                            </div>
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                                {% else %}
+                                                <div class="col-md-12">
+                                                    <div class="alert alert-info">
+                                                        <div class="container-fluid">
+                                                            <div class="alert-icon">
+                                                                <i class="material-icons">info_outline</i>
+                                                            </div>
+                                                            <button type="button" class="close"
+                                                                    data-dismiss="alert" aria-label="Close">
+                                                                    <span aria-hidden="true">
+                                                                        <i class="material-icons">clear</i>
+                                                                    </span>
+                                                            </button>
+                                                            <b>Info alert:</b> Please wait for all to complete
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% endif %}
+                                            </div>
 				                        </div>
                                         <div class="tab-pane text-center" id="About">
                                             <div class="row">

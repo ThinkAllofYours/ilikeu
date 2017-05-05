@@ -7,6 +7,7 @@ from django.utils.datetime_safe import datetime
 
 from .forms import LoginForm, SaveForm
 from .models import Human
+from .models import MateDates
 from django.http import response
 from django.shortcuts import get_object_or_404, redirect, render
 
@@ -34,27 +35,54 @@ def login(request):
             else:
                 gender = 'M'
 
-            mates = Human.objects.filter(
-                mate_date=convert_date, gender=gender,)
             # if gender is 'M' than return Woman else return Man
             try:
                 login_user = Human.objects.filter(
                     phoneNumber=phone_number, mate_date=convert_date,
                     password=password,)
-
                 login_user = Human.objects.get(pk=login_user[0].pk)
-            except login_user[0].DoesNotExist:
-                raise Http404("User does not exist")
+                mates = Human.objects.filter(mate_date=convert_date, gender=gender,)
+                mate_dates = MateDates.objects.get(mate_date=convert_date, )
+            except login_user.DoesNotExist:
+                return render(request, 'blog/login.html', {'alert': True})
+
+            if login_user.gender == mates[0].gender:
+                return render(request, 'blog/login.html', {'alert': True})
+
+            is_match = False
+            choice_you = []
+            choice_1 = 0
+            choice_2 = 0
+
+            for mate in mates:
+                if login_user.choice1 == mate.number and \
+                        (login_user.number == mate.choice1 or login_user.number == mate.choice2):
+                    choice_1 = mate
+                    is_match = True
+
+                if login_user.choice2 == mate.number and \
+                        (login_user.number == mate.choice1 or login_user.number == mate.choice2):
+                    choice_2 = mate
+                    is_match = True
+
+                if login_user.number == mate.choice1 or \
+                        login_user.number == mate.choice2:
+                    choice_you.append(str(mate.number))
 
             context = {
                 'login_user': login_user,
                 'mates': mates,
+                'mate_dates': mate_dates,
+                'is_match': is_match,
+                'choice_one': choice_1,
+                'choice_two': choice_2,
+                'choice_you': choice_you,
             }
 
             if login_user:
                 return render(request, 'blog/profile-page.html', context)
         else:
-            return render(request, 'blog/login.html', {})
+            return render(request, 'blog/login.html', {'alert': True})
     else:
         return HttpResponse("retry again")
         # return render(request, 'blog/profile-page.html', {})
@@ -66,9 +94,10 @@ def save_choice(request):
         if form.is_valid():
             choice1 = form.cleaned_data.get('choice1')
             choice2 = form.cleaned_data.get('choice2')
-            phoneNumber = form.cleaned_data.get('phoneNumber')
-            Human.objects.filter(phoneNumber=phoneNumber).update(choice1=choice1, choice2=choice2)
-            return render(request, 'blog/login.html')
+            phone_number = form.cleaned_data.get('phoneNumber')
+            login_user = Human.objects.filter(phoneNumber=phone_number).update(choice1=choice1, choice2=choice2)
+            context = {'login_user': login_user,}
+            return render(request, 'blog/login.html', context)
 
     return render(request, 'blog/profile-page.html', {})
 
