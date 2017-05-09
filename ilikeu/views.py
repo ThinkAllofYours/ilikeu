@@ -1,20 +1,13 @@
-from django.utils import timezone
-from django.shortcuts import render
-from django.shortcuts import render, get_object_or_404
-from django.shortcuts import redirect
 from django.http import HttpResponseRedirect, Http404
 from django.utils.datetime_safe import datetime
 
 from .forms import LoginForm, SaveForm
 from .models import Human
 from .models import MateDates
-from django.http import response
-from django.shortcuts import get_object_or_404, redirect, render
-
-from django.http import HttpResponse
-
+from django.shortcuts import render
 
 # Create your views here.
+
 
 def home(request):
     return render(request, 'blog/login.html', {})
@@ -40,13 +33,12 @@ def login(request):
                 login_user = Human.objects.filter(
                     phoneNumber=phone_number, mate_date=convert_date,
                     password=password,)
-                login_user = Human.objects.get(pk=login_user[0].pk)
-                mates = Human.objects.filter(mate_date=convert_date, gender=gender,)
-                mate_dates = MateDates.objects.get(mate_date=convert_date, )
+                login_user = Human.objects.get(pk=login_user[len(login_user)-1].pk)
+                mates = Human.objects.filter(mate_date=convert_date, gender=gender, mate_seq=login_user.mate_seq,)
+                mate_dates = MateDates.objects.get(mate_date=convert_date, mate_seq=login_user.mate_seq, )
             except:
                 if not login_user or not mates == 0:
                     return render(request, 'blog/login.html', {'alert': True})
-
                 raise Http404('아이디 비번을 다시 입력해주세')
 
             if login_user.gender == mates[0].gender:
@@ -103,42 +95,3 @@ def save_choice(request):
             return render(request, 'blog/login.html', context)
 
     return render(request, 'blog/profile-page.html', {})
-
-
-def result(request, mate_date, number):
-    return HttpResponse("Here's result Page")
-
-# def post_new(request):
-#     if request.method == "POST":
-#         form = PostForm(request.POST)
-#         if form.is_valid():
-#             post = form.save(commit=False)
-#             post.author = request.user
-#             post.published_date = timezone.now()
-#             post.save()
-#             return redirect('post_detail', pk=post.pk)
-#     else:
-#         form = PostForm()
-#     return render(request, 'blog/post_edit.html', {'form' : form})
-#
-# def post_edit(request, pk):
-#     post = get_object_or_404(Post, pk=pk)
-#     if request.method == "POST":
-#         form = PostForm(request.POST, instance=post)
-#         if form.is_valid():
-#             post = form.save(commit=False)
-#             post.author = request.user
-#             post.published_date = timezone.now()
-#             post.save()
-#             return redirect('post_detail', pk=post.pk)
-#     else:
-#         form = PostForm(instance=post)
-#     return render(request, 'blog/post_edit.html', {'form':form})
-#
-# def post_list(request):
-#     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-#     return render(request, 'blog/post_list.html',{'posts': posts})
-#
-# def post_detail(request, pk):
-#     post = get_object_or_404(Post, pk=pk)
-#     return render(request, 'blog/post_detail.html', {'post':post})

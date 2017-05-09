@@ -1,6 +1,7 @@
 from django import forms
 from .models import Human
 from .models import MateDates
+from django import forms
 
 
 class LoginForm(forms.ModelForm):
@@ -18,4 +19,4 @@ class SaveForm(forms.ModelForm):
 class DateForm(forms.ModelForm):
     class Meta:
         model = MateDates
-        fields = ('mate_date', 'isOpen', 'isComplete',)
+        fields = ('mate_date', "start_choice", "end_choice",)

@@ -16,16 +16,6 @@
 
         	<div class="collapse navbar-collapse" id="navigation-example">
         		<ul class="nav navbar-nav navbar-right">
-{#					<li>#}
-{#    					<a href="../components-documentation.html" target="_blank">#}
-{#    						<i class="material-icons">face</i> Result#}
-{#    					</a>#}
-{#    				</li>#}
-{#    				<li>#}
-{#						<a href="http://demos.creative-tim.com/material-kit-pro/presentation.html?ref=utp-freebie" target="_blank">#}
-{#							<i class="material-icons">favorite</i> Vote#}
-{#						</a>#}
-{#    				</li>#}
 		            <li>
 		                <a href="https://twitter.com/CreativeTim" target="_blank" class="btn btn-simple btn-white btn-just-icon">
 							<i class="fa fa-twitter"></i>
@@ -92,16 +82,24 @@
 				                    <div class="tab-content gallery">
 {#                                        checked=true 값만 가져온다 #}
                                             <div class="tab-pane active" id="Favorite">
-                                                {% if mate_dates.isOpen %}
+                                                {% if mate_dates.start_choice %}
                                                     <form class="form" method="post" action="{% url 'save_choice' %}" role="form">{% csrf_token %}
                                                         <div class="row">
                                                             <div class="col-sm-6">
+                                                                <div class="radio">
+                                                                    <label>
+                                                                        <input type="radio" name="choice1" value="0"
+                                                                               {% if login_user.choice1 == 0 %} checked="true" {% endif %}
+                                                                               {% if mate_dates.end_choice %} disabled{% endif %} >
+                                                                        마음에 드는 이성없음
+                                                                    </label>
+                                                                </div>
                                                                 {% for member in mates %}
                                                                     <div class="radio">
                                                                         <label>
                                                                             {% if member.number == login_user.choice1 %}
                                                                                 <input type="radio" name="choice1" value="{{ member.number }}" checked="true"
-                                                                                       {% if mate_dates.isComplete %}disabled{% endif %}>
+                                                                                       {% if mate_dates.end_choice %}disabled{% endif %}>
                                                                                     {% if member.gender == 'M' %}
                                                                                         남자 {{ member.number }}번님
                                                                                     {% else %}
@@ -109,7 +107,7 @@
                                                                                     {% endif %}
                                                                             {% else %}
                                                                                 <input type="radio" name="choice1" value="{{ member.number }}"
-                                                                                       {% if mate_dates.isComplete %}disabled{% endif %}>
+                                                                                       {% if mate_dates.end_choice %}disabled{% endif %}>
                                                                                     {% if member.gender == 'M' %}
                                                                                         남자 {{ member.number }}번님
                                                                                     {% else %}
@@ -121,12 +119,20 @@
                                                                 {% endfor %}
                                                             </div>
                                                             <div class="col-sm-6">
+                                                                <div class="radio">
+                                                                    <label>
+                                                                        <input type="radio" name="choice2" value="0"
+                                                                               {% if login_user.choice2 == 0 %} checked="true" {% endif %}
+                                                                               {% if mate_dates.end_choice %} disabled{% engit stdif %} >
+                                                                        마음에 드는 이성없음
+                                                                    </label>
+                                                                </div>
                                                                 {% for member in mates %}
                                                                     <div class="radio">
                                                                         <label>
                                                                             {% if member.number == login_user.choice2 %}
                                                                                 <input type="radio" name="choice2" value="{{ member.number }}" checked="true"
-                                                                                       {% if mate_dates.isComplete %}disabled{% endif %}>
+                                                                                       {% if mate_dates.end_choice %}disabled{% endif %}>
                                                                                     {% if member.gender == 'M' %}
                                                                                         남자 {{ member.number }}번님
                                                                                     {% else %}
@@ -134,7 +140,7 @@
                                                                                     {% endif %}
                                                                             {% else %}
                                                                                 <input type="radio" name="choice2" value="{{ member.number }}"
-                                                                                        {% if mate_dates.isComplete %}disabled{% endif %}>
+                                                                                        {% if mate_dates.end_choice %}disabled{% endif %}>
                                                                                     {% if member.gender == 'M' %}
                                                                                         남자 {{ member.number }}번님
                                                                                     {% else %}
@@ -147,7 +153,7 @@
                                                             </div>
                                                         </div>
                                                     <button type="submit" class="btn btn-primary"
-                                                            {% if mate_dates.isComplete %} disabled {% endif %}
+                                                            {% if mate_dates.end_choice %} disabled {% endif %}
                                                             name="phoneNumber"
                                                             value="{{ login_user.phoneNumber }}">DONE</button>
                                                 </form>
@@ -172,7 +178,7 @@
 
 										<div class="tab-pane text-center" id="Result">
 											<div class="row">
-                                                {% if mate_dates.isComplete %}
+                                                {% if mate_dates.end_choice %}
                                                 <div class="col-md-6">
                                                     <div class="info info-horizontal">
                                                         <div class="icon icon-info">
