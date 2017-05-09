@@ -30,7 +30,7 @@ class Human(models.Model):
     )
     gender = models.CharField(max_length=1, choices=GENDERS, default=MAN)
     mate_date = models.DateField(blank=True, null=False)
-    mate_seq = models.SmallIntegerField(blank=True, null=True, default=1)
+    mate_seq = models.SmallIntegerField(blank=True, null=True)
     userName = models.CharField(max_length=30, null=True, blank=True)
     phoneNumber = models.CharField(max_length=11, blank=False, null=False)
     password = models.CharField(max_length=20)
