@@ -94,62 +94,62 @@
                                                                         마음에 드는 이성없음
                                                                     </label>
                                                                 </div>
-                                                                {% for member in mates %}
-                                                                    <div class="radio">
-                                                                        <label>
-                                                                            {% if member.number == login_user.choice1 %}
-                                                                                <input type="radio" name="choice1" value="{{ member.number }}" checked="true"
-                                                                                       {% if mate_dates.end_choice %}disabled{% endif %}>
-                                                                                    {% if member.gender == 'M' %}
-                                                                                        남자 {{ member.number }}번님
-                                                                                    {% else %}
-                                                                                        여자 {{ member.number }}번님
-                                                                                    {% endif %}
-                                                                            {% else %}
-                                                                                <input type="radio" name="choice1" value="{{ member.number }}"
-                                                                                       {% if mate_dates.end_choice %}disabled{% endif %}>
-                                                                                    {% if member.gender == 'M' %}
-                                                                                        남자 {{ member.number }}번님
-                                                                                    {% else %}
-                                                                                        여자 {{ member.number }}번님
-                                                                                    {% endif %}
-                                                                            {% endif %}
-                                                                        </label>
-                                                                    </div>
-                                                                {% endfor %}
+                                                            {% for member in mates %}
+                                                                <div class="radio">
+                                                                    <label>
+                                                                        {% if member.number == login_user.choice1 %}
+                                                                            <input type="radio" name="choice1" value="{{ member.number }}" checked="true"
+                                                                                   {% if mate_dates.end_choice %}disabled{% endif %}>
+                                                                                {% if member.gender == 'M' %}
+                                                                                    남자 {{ member.number }}번님
+                                                                                {% else %}
+                                                                                    여자 {{ member.number }}번님
+                                                                                {% endif %}
+                                                                        {% else %}
+                                                                            <input type="radio" name="choice1" value="{{ member.number }}"
+                                                                                   {% if mate_dates.end_choice %}disabled{% endif %}>
+                                                                                {% if member.gender == 'M' %}
+                                                                                    남자 {{ member.number }}번님
+                                                                                {% else %}
+                                                                                    여자 {{ member.number }}번님
+                                                                                {% endif %}
+                                                                        {% endif %}
+                                                                    </label>
+                                                                </div>
+                                                            {% endfor %}
                                                             </div>
                                                             <div class="col-sm-6">
                                                                 <div class="radio">
                                                                     <label>
                                                                         <input type="radio" name="choice2" value="0"
                                                                                {% if login_user.choice2 == 0 %} checked="true" {% endif %}
-                                                                               {% if mate_dates.end_choice %} disabled{% engit stdif %} >
+                                                                               {% if mate_dates.end_choice %} disabled{% endif %} >
                                                                         마음에 드는 이성없음
                                                                     </label>
                                                                 </div>
-                                                                {% for member in mates %}
-                                                                    <div class="radio">
-                                                                        <label>
-                                                                            {% if member.number == login_user.choice2 %}
-                                                                                <input type="radio" name="choice2" value="{{ member.number }}" checked="true"
-                                                                                       {% if mate_dates.end_choice %}disabled{% endif %}>
-                                                                                    {% if member.gender == 'M' %}
-                                                                                        남자 {{ member.number }}번님
-                                                                                    {% else %}
-                                                                                        여자 {{ member.number }}번님
-                                                                                    {% endif %}
-                                                                            {% else %}
-                                                                                <input type="radio" name="choice2" value="{{ member.number }}"
-                                                                                        {% if mate_dates.end_choice %}disabled{% endif %}>
-                                                                                    {% if member.gender == 'M' %}
-                                                                                        남자 {{ member.number }}번님
-                                                                                    {% else %}
-                                                                                        여자 {{ member.number }}번님
-                                                                                    {% endif %}
-                                                                            {% endif %}
-                                                                        </label>
-                                                                    </div>
-                                                                {% endfor %}
+                                                            {% for member in mates %}
+                                                                <div class="radio">
+                                                                    <label>
+                                                                        {% if member.number == login_user.choice2 %}
+                                                                            <input type="radio" name="choice2" value="{{ member.number }}" checked="true"
+                                                                                   {% if mate_dates.end_choice %}disabled{% endif %}>
+                                                                                {% if member.gender == 'M' %}
+                                                                                    남자 {{ member.number }}번님
+                                                                                {% else %}
+                                                                                    여자 {{ member.number }}번님
+                                                                                {% endif %}
+                                                                        {% else %}
+                                                                            <input type="radio" name="choice2" value="{{ member.number }}"
+                                                                                    {% if mate_dates.end_choice %}disabled{% endif %}>
+                                                                                {% if member.gender == 'M' %}
+                                                                                    남자 {{ member.number }}번님
+                                                                                {% else %}
+                                                                                    여자 {{ member.number }}번님
+                                                                                {% endif %}
+                                                                        {% endif %}
+                                                                    </label>
+                                                                </div>
+                                                            {% endfor %}
                                                             </div>
                                                         </div>
                                                     <button type="submit" class="btn btn-primary"
