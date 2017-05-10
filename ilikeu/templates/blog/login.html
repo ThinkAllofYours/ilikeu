@@ -73,11 +73,24 @@
                             <option value="W">Woman</option>
                         </select>
                   </div>
+
                   <div class="input-group">
-                      <span class="input-group-addon">
+                    <span class="input-group-addon">
                         <i class="material-icons">today</i>
                     </span>
-                      <input name="mate_date" type="text" class="datepicker form-control"/>
+                    <input name="mate_date" type="text" class="datepicker form-control" id="date_picker"/>
+                  </div>
+
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="material-icons">date_range</i>
+                    </span>
+                      <select name="mate_seq" class="select form-control" placeholder="select part">
+                          <option disabled selected class="disabled"> Choose trial</option>
+                          <option value="1">1st trial</option>
+                          <option value="2">2nd trial</option>
+                          <option value="3">3rd trial</option>
+                      </select>
                   </div>
 
                   <div class="input-group">
@@ -131,8 +144,14 @@
 
   </div>
 
+    <script>
+        $('#date_picker').datepicker().on('changeDate', function (e) {
+            $(this).datepicker('hide');
+        });
+    </script>
 
 </body>
+
 {% endblock body %}
 
 

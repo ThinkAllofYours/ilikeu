@@ -7,7 +7,7 @@ from django import forms
 class LoginForm(forms.ModelForm):
     class Meta:
         model = Human
-        fields = ('gender', 'mate_date', 'phoneNumber', 'password',)
+        fields = ('gender', 'mate_date', 'mate_seq', 'phoneNumber', 'password',)
 
 
 class SaveForm(forms.ModelForm):

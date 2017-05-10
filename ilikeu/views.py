@@ -22,6 +22,7 @@ def login(request):
             convert_date = datetime.date(mate_date).strftime("%Y-%m-%d")
             phone_number = form.cleaned_data.get('phoneNumber')
             password = form.cleaned_data.get('password')
+            mate_seq = form.cleaned_data.get('mate_seq')
 
             if gender is 'M':
                 gender = 'W'
@@ -32,8 +33,8 @@ def login(request):
             try:
                 login_user = Human.objects.filter(
                     phoneNumber=phone_number, mate_date=convert_date,
-                    password=password,)
-                login_user = Human.objects.get(pk=login_user[len(login_user)-1].pk)
+                    password=password, mate_seq=mate_seq)
+                login_user = Human.objects.get(pk=login_user[0].pk)
                 mates = Human.objects.filter(mate_date=convert_date, gender=gender, mate_seq=login_user.mate_seq,)
                 mate_dates = MateDates.objects.get(mate_date=convert_date, mate_seq=login_user.mate_seq, )
             except:
