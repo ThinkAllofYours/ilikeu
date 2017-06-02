@@ -1,5 +1,5 @@
 {% extends 'blog/base.html' %} {% block content %} {% load staticfiles %}
- 
+
 <body class="profile-page">
 	<nav class="navbar navbar-transparent navbar-fixed-top navbar-color-on-scroll">
     	<div class="container">
@@ -13,10 +13,10 @@
         		</button>
 {#        		<a class="navbar-brand" href="http://www.creative-tim.com">Creative Tim</a>#}
         	</div>
-
+            {% comment %}
         	<div class="collapse navbar-collapse" id="navigation-example">
         		<ul class="nav navbar-nav navbar-right">
-		            {% comment %}<li>
+		            <li>
 		                <a href="https://twitter.com/CreativeTim" target="_blank" class="btn btn-simple btn-white btn-just-icon">
 							<i class="fa fa-twitter"></i>
 						</a>
@@ -30,9 +30,10 @@
 		                <a href="https://www.instagram.com/CreativeTimOfficial" target="_blank" class="btn btn-simple btn-white btn-just-icon">
 							<i class="fa fa-instagram"></i>
 						</a>
-		            </li>{% endcomment %}
+		            </li>
         		</ul>
         	</div>
+        	{% endcomment %}
     	</div>
     </nav>
     <div class="wrapper">
@@ -86,20 +87,22 @@
                                                 {% if mate_dates.start_choice %}
                                                     <form class="form" method="post" action="{% url 'save_choice' %}" role="form">{% csrf_token %}
                                                         <div class="row">
-                                                            <div class="col-sm-6">
-                                                                <div class="radio">
+                                                            <div class="hidden" >
+                                                                <input name="mate_date" type="datetime" value="{{ login_user.mate_date}}"/>
+                                                            </div>
+                                                            <div class="checkbox">
                                                                     <label>
-                                                                        <input type="radio" name="choice1" value="0"
-                                                                               {% if login_user.choice1 == 0 %} checked="true" {% endif %}
+                                                                        <input type="checkbox" name="choice" value="0"
+                                                                               {% if login_user.choice1 == 0 %} checked {% endif %}
                                                                                {% if mate_dates.end_choice %} disabled{% endif %} >
                                                                         마음에 드는 이성없음
                                                                     </label>
                                                                 </div>
                                                             {% for member in mates %}
-                                                                <div class="radio">
+                                                                <div class="checkbox">
                                                                     <label>
-                                                                        {% if member.number == login_user.choice1 %}
-                                                                            <input type="radio" name="choice1" value="{{ member.number }}" checked="true"
+                                                                        {% if member.number == login_user.choice1 or member.number == login_user.choice2%}
+                                                                            <input type="checkbox" name="choice" value="{{ member.number }}" checked
                                                                                    {% if mate_dates.end_choice %}disabled{% endif %}>
                                                                                 {% if member.gender == 'M' %}
                                                                                     남자 {{ member.number }}번님
@@ -107,7 +110,7 @@
                                                                                     여자 {{ member.number }}번님
                                                                                 {% endif %}
                                                                         {% else %}
-                                                                            <input type="radio" name="choice1" value="{{ member.number }}"
+                                                                            <input type="checkbox" name="choice" value="{{ member.number }}"
                                                                                    {% if mate_dates.end_choice %}disabled{% endif %}>
                                                                                 {% if member.gender == 'M' %}
                                                                                     남자 {{ member.number }}번님
@@ -118,7 +121,7 @@
                                                                     </label>
                                                                 </div>
                                                             {% endfor %}
-                                                            </div>
+                                                            {% comment %}
                                                             <div class="col-sm-6">
                                                                 <div class="radio">
                                                                     <label>
@@ -152,6 +155,7 @@
                                                                 </div>
                                                             {% endfor %}
                                                             </div>
+                                                            {% endcomment %}
                                                         </div>
                                                     <button type="submit" class="btn btn-primary"
                                                             {% if mate_dates.end_choice %} disabled {% endif %}
@@ -282,9 +286,17 @@
 	            </div>
 	        </div>
 		</div>
-
+    <script>
+        $('input[type=checkbox]').on('change', function (e) {
+            if ($('input[type=checkbox]:checked').length > 2) {
+                $(this).prop('checked', false);
+                alert("allowed only 2");
+            }
+        });
+    </script>
     </div>
     <footer class="footer">
+        {% comment %}
         <div class="container">
             <nav class="pull-left">
 				<ul>
@@ -314,6 +326,7 @@
                 &copy; 2016, made with <i class="fa fa-heart heart"></i> by Creative Tim
             </div>
         </div>
+        {% endcomment %}
     </footer>
 
 </body>

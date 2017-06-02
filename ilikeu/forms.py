@@ -13,7 +13,8 @@ class LoginForm(forms.ModelForm):
 class SaveForm(forms.ModelForm):
     class Meta:
         model = Human
-        fields = ('choice1', 'choice2', 'phoneNumber',)
+        # fields = ('choice1', 'choice2', 'phoneNumber',)
+        fields = ('phoneNumber',)
 
 
 class DateForm(forms.ModelForm):

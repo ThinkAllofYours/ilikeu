@@ -5,6 +5,7 @@ from .forms import LoginForm, SaveForm
 from .models import Human
 from .models import MateDates
 from django.shortcuts import render
+import time
 
 # Create your views here.
 
@@ -88,8 +89,21 @@ def save_choice(request):
     if request.method == 'POST':
         form = SaveForm(request.POST)
         if form.is_valid():
-            choice1 = form.cleaned_data.get('choice1')
-            choice2 = form.cleaned_data.get('choice2')
+            # choice1 = form.cleaned_data.get('choice1')
+            # choice2 = form.cleaned_data.get('choice2')
+            choice_list = request.POST.getlist('choice')
+            date = request.POST.get('mate_date');
+            # May 6, 2017
+            # convert_date = datetime.date(date).strftime("%Y-%m-%d")
+            convert_date = time.strptime(date, "%Y-%m-%d")
+
+            if len(choice_list) == 2:
+                choice1 = choice_list[0]
+                choice2 = choice_list[1]
+            else:
+                choice1 = choice_list[0]
+                choice2 = 0
+
             phone_number = form.cleaned_data.get('phoneNumber')
             login_user = Human.objects.filter(phoneNumber=phone_number).update(choice1=choice1, choice2=choice2)
             context = {'login_user': login_user,}
