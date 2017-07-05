@@ -85,10 +85,11 @@
 {#                                        checked=true 값만 가져온다 #}
                                             <div class="tab-pane active" id="Favorite">
                                                 {% if mate_dates.start_choice %}
-                                                    <form class="form" method="post" action="{% url 'save_choice' %}" role="form">{% csrf_token %}
+                                                    <form class="form" id="save_choice" method="post" action="{% url 'save_choice' %}" role="form">{% csrf_token %}
                                                         <div class="row">
                                                             <div class="hidden" >
                                                                 <input name="mate_date" type="datetime" value="{{ login_user.mate_date}}"/>
+                                                                <input name="mate_seq" type="number" value="{{ login_user.mate_seq }}"/>
                                                             </div>
                                                             <div class="checkbox">
                                                                     <label>
@@ -160,7 +161,8 @@
                                                     <button type="submit" class="btn btn-primary"
                                                             {% if mate_dates.end_choice %} disabled {% endif %}
                                                             name="phoneNumber"
-                                                            value="{{ login_user.phoneNumber }}">DONE</button>
+                                                            value="{{ login_user.phoneNumber }}">DONE
+                                                    </button>
                                                 </form>
                                                 {% else %}
                                                     <div class="alert alert-info">
@@ -293,6 +295,13 @@
                 alert("allowed only 2");
             }
         });
+
+        $('#save_choice').click(function(e){
+           var c = confirm("Complete your choice?");
+           return c;
+           e.preventDefault();
+        });
+
     </script>
     </div>
     <footer class="footer">

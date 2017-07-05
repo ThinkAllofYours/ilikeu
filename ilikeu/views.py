@@ -89,13 +89,10 @@ def save_choice(request):
     if request.method == 'POST':
         form = SaveForm(request.POST)
         if form.is_valid():
-            # choice1 = form.cleaned_data.get('choice1')
-            # choice2 = form.cleaned_data.get('choice2')
             choice_list = request.POST.getlist('choice')
-            date = request.POST.get('mate_date');
-            # May 6, 2017
-            # convert_date = datetime.date(date).strftime("%Y-%m-%d")
-            convert_date = time.strptime(date, "%Y-%m-%d")
+            mate_date = request.POST.get('mate_date')
+            mate_seq = request.POST.get('mate_seq')
+            convert_date = datetime.strptime(mate_date, '%B %d, %Y').strftime('%Y-%m-%d')
 
             if len(choice_list) == 2:
                 choice1 = choice_list[0]
@@ -105,8 +102,53 @@ def save_choice(request):
                 choice2 = 0
 
             phone_number = form.cleaned_data.get('phoneNumber')
-            login_user = Human.objects.filter(phoneNumber=phone_number).update(choice1=choice1, choice2=choice2)
-            context = {'login_user': login_user,}
-            return render(request, 'blog/login.html', context)
+            Human.objects.filter(phoneNumber=phone_number,
+                                 mate_seq=mate_seq,
+                                 mate_date=convert_date)\
+                         .update(choice1=choice1,
+                                 choice2=choice2)
 
-    return render(request, 'blog/profile-page.html', {})
+            login_user = Human.objects.filter(phoneNumber=phone_number, mate_date=convert_date, mate_seq=mate_seq)
+            login_user = Human.objects.get(pk=login_user[0].pk)
+
+            if login_user.gender is 'M':
+                gender = 'W'
+            else:
+                gender = 'M'
+
+            mates = Human.objects.filter(mate_date=convert_date, gender=gender, mate_seq=mate_seq,)
+            mate_dates = MateDates.objects.get(mate_date=convert_date, mate_seq=login_user.mate_seq, )
+
+            is_match = False
+            choice_you = []
+            choice_1 = 0
+            choice_2 = 0
+
+            for mate in mates:
+                if login_user.choice1 == mate.number and \
+                        (login_user.number == mate.choice1 or login_user.number == mate.choice2):
+                    choice_1 = mate
+                    is_match = True
+
+                if login_user.choice2 == mate.number and \
+                        (login_user.number == mate.choice1 or login_user.number == mate.choice2):
+                    choice_2 = mate
+                    is_match = True
+
+                if login_user.number == mate.choice1 or \
+                        login_user.number == mate.choice2:
+                    choice_you.append(str(mate.number))
+
+            context = {
+                'login_user': login_user,
+                'mates': mates,
+                'mate_dates': mate_dates,
+                'is_match': is_match,
+                'choice_one': choice_1,
+                'choice_two': choice_2,
+                'choice_you': choice_you,
+            }
+
+            return render(request, 'blog/profile-page.html', context)
+
+    return HttpResponseRedirect('/')
